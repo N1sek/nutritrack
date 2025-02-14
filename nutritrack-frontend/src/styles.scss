@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+// Define the base font size
+$font-size-base: 1rem !default;
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+
+@import "fonts";
+
+// Default variable overrides
+$main-blue:    #4eabf9 !default; // Modificado
+$orange:  #FF7D7D !default; // Modificado
+$yellow:  #FFC05B !default; // Modificado
+$teal:    #42DCA6 !default; // Modificado
+$sky:     #d1e9ff !default; // Creado
+$lead:    #7C7C7C !default; // Creado
+
+// scss-docs-start theme-color-variables
+$primary:       $main-blue !default;
+$success:       $teal !default; // Modificado
+$text-lead:     $lead !default; // Creado
+// scss-docs-end theme-color-variables
+
+
+
+// Sobrescribir variables de Bootstrap
+$font-size-root: 16px !default;
+$font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$h1-font-size: $font-size-base * 3 !default;
+$h2-font-size: $font-size-base * 2.25 !default;
+
+// Required
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Optional Bootstrap components here
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+
+
+
+

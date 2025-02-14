@@ -44,6 +44,9 @@ importers:
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
+      sass:
+        specifier: ^1.85.0
+        version: 1.85.0
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -3619,6 +3622,11 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  sass@1.85.0:
+    resolution: {integrity: sha512-3ToiC1xZ1Y8aU7+CkgCI/tqyuPXEmYGJXO7H4uqp0xkLXUqp88rQQ4j1HmP37xSJLbCJPaIiv+cT1y+grssrww==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
@@ -4402,7 +4410,7 @@ snapshots:
       sass: 1.83.1
       semver: 7.6.3
       typescript: 5.6.3
-      vite: 6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)
+      vite: 6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.85.0)(terser@5.37.0)
       watchpack: 2.4.2
     optionalDependencies:
       less: 4.2.1
@@ -5937,7 +5945,7 @@ snapshots:
 
   '@vitejs/plugin-basic-ssl@1.2.0(vite@6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.83.1)(terser@5.37.0))':
     dependencies:
-      vite: 6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)
+      vite: 6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.85.0)(terser@5.37.0)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -8039,6 +8047,14 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.1
 
+  sass@1.85.0:
+    dependencies:
+      chokidar: 4.0.3
+      immutable: 5.0.3
+      source-map-js: 1.2.1
+    optionalDependencies:
+      '@parcel/watcher': 2.5.1
+
   sax@1.4.1:
     optional: true
 
@@ -8489,7 +8505,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.83.1)(terser@5.37.0):
+  vite@6.0.11(@types/node@22.13.4)(jiti@1.21.7)(less@4.2.1)(sass@1.85.0)(terser@5.37.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.4.49
@@ -8499,7 +8515,7 @@ snapshots:
       fsevents: 2.3.3
       jiti: 1.21.7
       less: 4.2.1
-      sass: 1.83.1
+      sass: 1.85.0
       terser: 5.37.0
 
   void-elements@2.0.1: {}

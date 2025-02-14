@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Registro</h2>
+
+  @if (step === 1) {
+    <input type="email" [(ngModel)]="userData.email" required>
+    <button (click)="nextStep()">Siguiente</button>
+  }
+  @if (step === 2) {
+    <input type="text" [(ngModel)]="userData.name" required>
+    <button (click)="nextStep()">Siguiente</button>
+  }
+</div>
