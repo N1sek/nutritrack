@@ -14,6 +14,8 @@ export class RegisterComponent {
   step = 1;
   userData = {
     email: '',
+    password: '',
+    confirmPassword: '',
     name: '',
     age: '',
     weight: '',
@@ -21,10 +23,15 @@ export class RegisterComponent {
     goal: '',
   }
 
-  nextStep() {
+
+  nextStep(event: Event) {
+    event.preventDefault();
     if (this.step < 3) {
       this.step++;
     }
+  }
+
+  validateStep(){
   }
 
   constructor(private router: Router) {}
