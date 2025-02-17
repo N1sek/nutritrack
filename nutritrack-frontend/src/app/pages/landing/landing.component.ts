@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,13 @@ import {NgOptimizedImage} from '@angular/common';
 })
 export class LandingComponent {
 
+  constructor(private router: Router) {}
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
 }

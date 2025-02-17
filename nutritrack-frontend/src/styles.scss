@@ -1,4 +1,4 @@
-// Define the base font size
+// Base
 $font-size-base: 1rem !default;
 
 // Required
@@ -6,23 +6,17 @@ $font-size-base: 1rem !default;
 
 @import "fonts";
 
-// Default variable overrides
-$main-blue:    #4eabf9 !default; // Modificado
-$orange:  #FF7D7D !default; // Modificado
-$yellow:  #FFC05B !default; // Modificado
-$teal:    #42DCA6 !default; // Modificado
-$sky:     #d1e9ff !default; // Creado
-$lead:    #7C7C7C !default; // Creado
+$main-blue:    #4eabf9 !default;
+$orange:  #FF7D7D !default;
+$yellow:  #FFC05B !default;
+$teal:    #42DCA6 !default;
+$sky:     #d1e9ff !default;
+$lead:    #7C7C7C !default;
 
-// scss-docs-start theme-color-variables
 $primary:       $main-blue !default;
-$success:       $teal !default; // Modificado
-$text-lead:     $lead !default; // Creado
-// scss-docs-end theme-color-variables
+$success:       $teal !default;
+$text-lead:     $lead !default;
 
-
-
-// Sobrescribir variables de Bootstrap
 $font-size-root: 16px !default;
 $font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $h1-font-size: $font-size-base * 3 !default;
