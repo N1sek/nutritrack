@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {NgForOf} from '@angular/common';
 
 @Component({
-  selector: 'app-stepper',
-  imports: [],
+  selector: 'register-stepper',
+  imports: [
+    NgForOf
+  ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss'
 })
 export class StepperComponent {
+  @Input() totalSteps: number = 4;
+  @Input() currentStep: number = 1;
 
 }

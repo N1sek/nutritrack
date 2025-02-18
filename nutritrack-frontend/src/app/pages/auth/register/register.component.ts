@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
+import {StepperComponent} from './components/stepper/stepper.component';
 
 @Component({
   selector: 'app-register',
   imports: [
-    FormsModule
+    FormsModule,
+    StepperComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -26,6 +28,7 @@ export class RegisterComponent {
   }
 
   constructor(private router: Router) {}
+
 
 
   nextStep(event: Event) {

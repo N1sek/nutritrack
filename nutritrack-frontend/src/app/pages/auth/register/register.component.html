@@ -22,7 +22,7 @@
         <div class="text-center position-relative my-3"><span class="px-3 bg-white position-relative z-1">o</span>
           <div class="position-absolute top-50 start-0 w-100 border-bottom"></div>
         </div> <!-- Formulario de Registro - Paso 1 -->
-        <form (submit)="nextStep($event)">
+        <form (submit)="nextStep($event)" ngForm>
           <div class="mb-3"><label for="email" class="form-label">Correo Electrónico</label>
             <input type="email"
                    class="form-control"
@@ -39,33 +39,15 @@
               class="form-control"
               id="confirmPassword" required>
           </div>
-          <button type="submit" class="btn btn-primary w-100">Continuar</button>
+          <button type="submit" class="btn btn-primary w-100" >Continuar</button>
         </form>
       </div>
-    } @else if (step === 2) {
+    }
+
+    @if (step === 2) {
       <div class="col-md-9 p-5 pt-3 d-flex flex-column justify-content-center">
-        <!-- 4 bars stepper. 2 bars of 4 -->
-        <div class="d-flex mb-5">
-<!--          4 boostrap progress bars-->
-          <div class="progress w-25 me-2">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress w-25 me-2">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress w-25 me-2">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress w-25">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
 
-        </div>
-
+        <register-stepper></register-stepper>
 
         <h2 class="text-center mb-4">📝 Introduce tus datos</h2>
         <!-- Formulario de Registro - Paso 2 -->
@@ -121,6 +103,14 @@
         </form>
       </div>
     }
+
+    @if (step === 3) {
+<!--      3 cards. Loose wight, maintain or gain -->
+
+
+
+    }
+
 
 
 
