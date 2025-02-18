@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+
   step = 1;
   userData = {
     email: '',
@@ -20,8 +21,11 @@ export class RegisterComponent {
     age: '',
     weight: '',
     height: '',
+    gender: '',
     goal: '',
   }
+
+  constructor(private router: Router) {}
 
 
   nextStep(event: Event) {
@@ -31,9 +35,16 @@ export class RegisterComponent {
     }
   }
 
+  prevStep(event: Event) {
+    event.preventDefault();
+    if (this.step > 1) {
+      this.step--;
+    }
+  }
+
   validateStep(){
   }
 
-  constructor(private router: Router) {}
+
 
 }

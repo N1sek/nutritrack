@@ -43,9 +43,82 @@
         </form>
       </div>
     } @else if (step === 2) {
-      <div class="col-md-9 p-5 d-flex flex-column justify-content-center">
-        <button type="submit" class="btn btn-primary w-100">Atras</button>
-        <button type="submit" class="btn btn-primary w-100">Continuar</button>
+      <div class="col-md-9 p-5 pt-3 d-flex flex-column justify-content-center">
+        <!-- 4 bars stepper. 2 bars of 4 -->
+        <div class="d-flex mb-5">
+<!--          4 boostrap progress bars-->
+          <div class="progress w-25 me-2">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="progress w-25 me-2">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="progress w-25 me-2">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="progress w-25">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+        </div>
+
+
+        <h2 class="text-center mb-4">📝 Introduce tus datos</h2>
+        <!-- Formulario de Registro - Paso 2 -->
+        <form (submit)="nextStep($event)">
+
+          <div class="mb-3 d-flex">
+            <div class="me-2">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div>
+              <label for="lastName" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="lastName" required>
+            </div>
+          </div>
+          <div class="mb-3 d-flex">
+            <div class="me-2">
+              <label for="weight" class="form-label">Peso (kg)</label>
+              <input type="number"
+                     class="form-control"
+                     id="weight" required>
+            </div>
+            <div>
+              <label for="height" class="form-label">Altura (cm)</label>
+              <input type="number"
+                     class="form-control"
+                     id="height" required>
+            </div>
+          </div>
+
+          <div class="mb-3 d-flex">
+            <div class="me-3">
+              <label for="age" class="form-label">Edad</label>
+              <input type="number"
+                     class="form-control"
+                     id="age" required>
+            </div>
+            <div>
+              <label for="gender" class="form-label">Género</label>
+              <select class="form-select form-select mb-3" id="gender" required>
+                <option value="" selected>Selecciona tu género</option>
+                <option value="men">Hombre</option>
+                <option value="woman">Mujer</option>
+              </select>
+            </div>
+          </div>
+
+<!--          Botones volver y continuar-->
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="prevStep($event)">Volver</button>
+            <button type="submit" class="btn btn-primary">Continuar</button>
+          </div>
+        </form>
       </div>
     }
 

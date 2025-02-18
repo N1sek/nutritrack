@@ -4,9 +4,7 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    NgOptimizedImage
-  ],
+  imports: [],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   standalone: true
