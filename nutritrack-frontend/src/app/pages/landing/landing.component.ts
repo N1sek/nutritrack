@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {Router} from '@angular/router';
+import {NavbarComponent} from '../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [
+    NavbarComponent
+  ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   standalone: true
@@ -13,11 +16,8 @@ export class LandingComponent {
 
   constructor(private router: Router) {}
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
-
   goToRegister() {
     this.router.navigate(['/register']);
   }
+
 }

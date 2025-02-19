@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {StepperComponent} from './components/stepper/stepper.component';
+import {NavbarComponent} from '../../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-register',
   imports: [
     FormsModule,
-    StepperComponent
+    StepperComponent,
+    NavbarComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

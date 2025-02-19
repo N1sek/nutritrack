@@ -22,6 +22,8 @@ $font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto
 $h1-font-size: $font-size-base * 3 !default;
 $h2-font-size: $font-size-base * 2.25 !default;
 
+$progress-height: .5rem !default;
+
 // Required
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/maps";
