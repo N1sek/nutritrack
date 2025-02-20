@@ -2,6 +2,7 @@
 $font-size-base: 1rem !default;
 
 // Required
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons';
 @import "../node_modules/bootstrap/scss/functions";
 
 @import "fonts";
@@ -23,6 +24,21 @@ $h1-font-size: $font-size-base * 3 !default;
 $h2-font-size: $font-size-base * 2.25 !default;
 
 $progress-height: .5rem !default;
+
+
+// Utilidades
+@import "../node_modules/bootstrap/scss/bootstrap-utilities";
+$utilities: map-merge(
+    $utilities,
+    (
+      "cursor": (
+        property: cursor,
+        values: auto default pointer wait text move help not-allowed
+      ),
+    )
+);
+
+
 
 // Required
 @import "../node_modules/bootstrap/scss/variables";

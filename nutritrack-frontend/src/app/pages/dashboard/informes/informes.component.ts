@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {NavbarComponent} from '../../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-informes',
-  imports: [],
+  imports: [
+    NavbarComponent
+  ],
   templateUrl: './informes.component.html',
   styleUrl: './informes.component.scss'
 })
