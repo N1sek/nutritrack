@@ -39,7 +39,6 @@ $utilities: map-merge(
 );
 
 
-
 // Required
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/maps";
@@ -51,6 +50,11 @@ $utilities: map-merge(
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 
-
+body{
+  margin-top: 60px;
+}
+.top-75 {
+  top: 75% !important;
+}
 
 

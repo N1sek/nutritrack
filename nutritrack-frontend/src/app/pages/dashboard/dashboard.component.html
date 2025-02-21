@@ -1,5 +1,204 @@
 <app-navbar></app-navbar>
 
-<main class="d-flex min-vh-100 mt-5">
-  <h1 class="display-1">Inicio</h1>
+<main class="container-xxl py-5">
+  <div class="row g-4">
+    <div class="col-md-6 d-flex flex-column">
+      <app-box class="flex-grow-1">
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <h5 class="mb-0">Hoy<i class="bi bi-chevron-down h6"></i></h5>
+        </div>
+        <div class="row">
+          <!-- Donut Chart -->
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="position-relative" style="width: 250px; height: 250px;">
+              <!-- Canvas de Chart.js -->
+              <canvas id="nutricionChart" width="250" height="250"></canvas>
+
+              <!-- Texto central -->
+              <div class="position-absolute top-50 start-50 translate-middle text-center">
+                <p class="h2 text-black mb-0">
+                  1200<span class="h6 text-muted">/1800kcal</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Datos Macronutrientes -->
+          <div class="col-md-6">
+            <div class="row">
+              <!-- Grasas -->
+              <div class="col-md-12 col-4 mb-3">
+                <p class="h6 text-muted mb-1">Grasas</p>
+                <p class="h2 text-black mb-1">
+                  37<span class="h6 text-muted">/65g</span>
+                </p>
+                <div class="progress">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+
+              <!-- Carbohidratos -->
+              <div class="col-md-12 col-4 mb-3">
+                <p class="h6 text-muted mb-1">Carbohidratos</p>
+                <p class="h2 text-black mb-1">
+                  75<span class="h6 text-muted">/96g</span>
+                </p>
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+
+              <!-- Proteínas -->
+              <div class="col-md-12 col-4 mb-3">
+                <p class="h6 text-muted mb-1">Proteínas</p>
+                <p class="h2 text-black mb-1">
+                  125<span class="h6 text-muted">/180g</span>
+                </p>
+                <div class="progress">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 64%" aria-valuenow="64"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-box>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row g-4 h-100">
+        <!-- Información personal -->
+        <div class="col-12">
+          <app-box class="h-100">
+            <h4 class="text-center">Información Personal</h4>
+            <div class="d-flex justify-content-around">
+              <div class="d-inline-flex flex-column text-center">
+                <p class="h3 text-black mb-0">
+                  75<span class="h5 text-muted">kg</span>
+                </p>
+                <p class="h6 text-muted mt-0">Peso</p>
+              </div>
+              <div class="d-inline-flex flex-column text-center mx-2">
+                <p class="h3 text-black mb-0">
+                  182<span class="h5 text-muted">cm</span>
+                </p>
+                <p class="h6 text-muted mt-0">Altura</p>
+              </div>
+              <div class="d-inline-flex flex-column text-center">
+                <p class="h3 text-black mb-0">
+                  22
+                </p>
+                <p class="h6 text-muted mt-0">Edad</p>
+              </div>
+            </div>
+
+          </app-box>
+        </div>
+        <!-- Recetas sugeridas -->
+        <div class="col-12">
+          <app-box class="h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0">Recetas sugeridas</h4>
+              <i class="bi bi-arrow-clockwise h5"></i>
+            </div>
+            <!-- Receta 1 -->
+            <div class="d-flex mb-3">
+              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 1">
+              <div class="flex-grow-1">
+                <h6 class="mb-1">Ensalada César</h6>
+                <!-- Leyendas -->
+                <div class="d-flex justify-content-between mb-1">
+                  <small><span class="text-warning">●</span> Grasas 40%</small>
+                  <small><span class="text-success">●</span> Proteínas 30%</small>
+                  <small><span class="text-danger">●</span> Carbs 30%</small>
+                </div>
+                <!-- Progress bars -->
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-warning" style="width: 40%"></div>
+                  <div class="progress-bar bg-success" style="width: 30%"></div>
+                  <div class="progress-bar bg-danger" style="width: 30%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Receta 2 -->
+            <div class="d-flex mb-3">
+              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 2">
+              <div class="flex-grow-1">
+                <h6 class="mb-1">Pollo Teriyaki</h6>
+                <!-- Leyendas -->
+                <div class="d-flex justify-content-between mb-1">
+                  <small><span class="text-warning">●</span> Grasas 25%</small>
+                  <small><span class="text-success">●</span> Proteínas 50%</small>
+                  <small><span class="text-info">●</span> Carbs 25%</small>
+                </div>
+                <!-- Progress bars -->
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-warning" style="width: 25%"></div>
+                  <div class="progress-bar bg-success" style="width: 50%"></div>
+                  <div class="progress-bar bg-danger" style="width: 25%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Receta 3 -->
+            <div class="d-flex">
+              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 3">
+              <div class="flex-grow-1">
+                <h6 class="mb-1">Salmón al Horno</h6>
+                <!-- Leyendas -->
+                <div class="d-flex justify-content-between mb-1">
+                  <small><span class="text-warning">●</span> Grasas 35%</small>
+                  <small><span class="text-success">●</span> Proteínas 45%</small>
+                  <small><span class="text-info">●</span> Carbs 20%</small>
+                </div>
+                <!-- Progress bars -->
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-warning" style="width: 35%"></div>
+                  <div class="progress-bar bg-success" style="width: 45%"></div>
+                  <div class="progress-bar bg-danger" style="width: 20%"></div>
+                </div>
+              </div>
+            </div>
+          </app-box>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda fila -->
+    <!-- Gráfica de peso -->
+    <div class="col-md-6 d-flex flex-column">
+      <app-box class="flex-grow-1 d-flex flex-column">
+        <app-peso></app-peso>
+      </app-box>
+    </div>
+
+    <!-- Agua -->
+    <div class="col-md-6 d-flex flex-column">
+      <app-box class="flex-grow-1 d-flex flex-column justify-content-center">
+        <h4 class="text-center mb-4">Agua</h4>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="position-relative" style="width: 250px; height: 125px;">
+            <!-- Canvas de Chart.js -->
+            <canvas id="aguaChart" width="250" height="125"></canvas>
+
+            <!-- Texto central -->
+            <div class="position-absolute top-75 start-50 translate-middle text-center">
+              <p class="h3 mb-0">1,5L</p>
+              <small class="text-muted">/2L</small>
+            </div>
+          </div>
+        </div>
+
+      </app-box>
+    </div>
+
+
+
+  </div>
 </main>
