@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
 
 <main class="container-xxl py-5">
+  <h3 class="mb-4">Bienvenido, Denis</h3>
   <div class="row g-4">
     <div class="col-md-6 d-flex flex-column">
-      <app-box class="flex-grow-1">
+      <app-box class="flex-grow-1 d-flex">
         <div class="d-flex justify-content-center align-items-center mb-3">
           <h5 class="mb-0">Hoy<i class="bi bi-chevron-down h6"></i></h5>
         </div>
@@ -13,7 +14,6 @@
             <div class="position-relative" style="width: 250px; height: 250px;">
               <!-- Canvas de Chart.js -->
               <canvas id="nutricionChart" width="250" height="250"></canvas>
-
               <!-- Texto central -->
               <div class="position-absolute top-50 start-50 translate-middle text-center">
                 <p class="h2 text-black mb-0">
@@ -22,8 +22,6 @@
               </div>
             </div>
           </div>
-
-
 
           <!-- Datos Macronutrientes -->
           <div class="col-md-6">
@@ -59,7 +57,7 @@
                   125<span class="h6 text-muted">/180g</span>
                 </p>
                 <div class="progress">
-                  <div class="progress-bar bg-danger" role="progressbar" style="width: 64%" aria-valuenow="64"
+                  <div class="progress-bar bg-salmon" role="progressbar" style="width: 64%" aria-valuenow="64"
                        aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
@@ -111,16 +109,17 @@
               <div class="flex-grow-1">
                 <h6 class="mb-1">Ensalada César</h6>
                 <!-- Leyendas -->
-                <div class="d-flex justify-content-between mb-1">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
                   <small><span class="text-warning">●</span> Grasas 40%</small>
-                  <small><span class="text-success">●</span> Proteínas 30%</small>
-                  <small><span class="text-danger">●</span> Carbs 30%</small>
+                  <small><span class="text-success">●</span> Carbs 30%</small>
+                  <small><span class="text-salmon">●</span> Proteínas 30%</small>
+
                 </div>
                 <!-- Progress bars -->
                 <div class="progress" style="height: 8px;">
                   <div class="progress-bar bg-warning" style="width: 40%"></div>
                   <div class="progress-bar bg-success" style="width: 30%"></div>
-                  <div class="progress-bar bg-danger" style="width: 30%"></div>
+                  <div class="progress-bar bg-salmon" style="width: 30%"></div>
                 </div>
               </div>
             </div>
@@ -131,16 +130,17 @@
               <div class="flex-grow-1">
                 <h6 class="mb-1">Pollo Teriyaki</h6>
                 <!-- Leyendas -->
-                <div class="d-flex justify-content-between mb-1">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
                   <small><span class="text-warning">●</span> Grasas 25%</small>
-                  <small><span class="text-success">●</span> Proteínas 50%</small>
-                  <small><span class="text-info">●</span> Carbs 25%</small>
+                  <small><span class="text-success">●</span> Carbs 50%</small>
+                  <small><span class="text-salmon">●</span> Proteínas 25%</small>
+
                 </div>
                 <!-- Progress bars -->
                 <div class="progress" style="height: 8px;">
                   <div class="progress-bar bg-warning" style="width: 25%"></div>
                   <div class="progress-bar bg-success" style="width: 50%"></div>
-                  <div class="progress-bar bg-danger" style="width: 25%"></div>
+                  <div class="progress-bar bg-salmon" style="width: 25%"></div>
                 </div>
               </div>
             </div>
@@ -151,16 +151,16 @@
               <div class="flex-grow-1">
                 <h6 class="mb-1">Salmón al Horno</h6>
                 <!-- Leyendas -->
-                <div class="d-flex justify-content-between mb-1">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
                   <small><span class="text-warning">●</span> Grasas 35%</small>
-                  <small><span class="text-success">●</span> Proteínas 45%</small>
-                  <small><span class="text-info">●</span> Carbs 20%</small>
+                  <small><span class="text-success">●</span> Carbs 45%</small>
+                  <small><span class="text-salmon">●</span> Proteínas 20%</small>
                 </div>
                 <!-- Progress bars -->
                 <div class="progress" style="height: 8px;">
                   <div class="progress-bar bg-warning" style="width: 35%"></div>
                   <div class="progress-bar bg-success" style="width: 45%"></div>
-                  <div class="progress-bar bg-danger" style="width: 20%"></div>
+                  <div class="progress-bar bg-salmon" style="width: 20%"></div>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@
 
     <!-- Agua -->
     <div class="col-md-6 d-flex flex-column">
-      <app-box class="flex-grow-1 d-flex flex-column justify-content-center">
+      <app-box class="flex-grow-1 d-flex">
         <h4 class="text-center mb-4">Agua</h4>
 
         <div class="d-flex justify-content-center align-items-center">
@@ -194,6 +194,11 @@
             </div>
           </div>
         </div>
+        <div class="d-flex justify-content-center mt-5">
+          <button class="btn btn-primary">Agregar Agua</button>
+        </div>
+
+
 
       </app-box>
     </div>

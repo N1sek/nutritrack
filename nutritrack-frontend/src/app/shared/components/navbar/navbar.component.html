@@ -1,7 +1,7 @@
 @if (!isLoggedIn()) {
   <nav class="navbar navbar-expand-sm bg-white shadow-sm fixed-top">
     <div class="container-xxl">
-      <a class="navbar-brand fw-bold text-dark fs-4 cursor-pointer" href="#" (click)="info()"
+      <a class="navbar-brand fw-bold text-dark fs-4 " href="#" (click)="info()" role="button"
       >NutriTrack</a
       >
 
@@ -47,7 +47,7 @@
 } @else {
   <nav class="navbar navbar-expand-sm bg-white shadow-sm fixed-top">
     <div class="container-xxl">
-      <a class="navbar-brand fw-bold text-dark fs-4 cursor-pointer" (click)="goToHome()">NutriTrack</a>
+      <a class="navbar-brand fw-bold text-dark fs-4 cursor-pointer" (click)="goToHome()" role="button">NutriTrack</a>
 
       <!-- Menu hamburguesa moviles -->
       <button

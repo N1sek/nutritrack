@@ -8,7 +8,7 @@ $font-size-base: 1rem !default;
 @import "fonts";
 
 $main-blue:    #4eabf9 !default;
-$orange:  #FF7D7D !default;
+$salmon:  #FF7D7D !default;
 $yellow:  #FFC05B !default;
 $teal:    #42DCA6 !default;
 $sky:     #d1e9ff !default;
@@ -25,19 +25,49 @@ $h2-font-size: $font-size-base * 2.25 !default;
 
 $progress-height: .5rem !default;
 
-
-// Utilidades
-@import "../node_modules/bootstrap/scss/bootstrap-utilities";
-$utilities: map-merge(
-    $utilities,
-    (
-      "cursor": (
-        property: cursor,
-        values: auto default pointer wait text move help not-allowed
-      ),
-    )
+$colors: (
+  "main-blue": #4eabf9,
+  "salmon": #FF7D7D,
+  "yellow": #FFC05B,
+  "teal": #42DCA6,
+  "sky": #d1e9ff,
+  "lead": #7C7C7C
 );
 
+@mixin generate-bg-classes($colors) {
+  @each $name, $color in $colors {
+    .bg-#{$name} {
+      background-color: $color !important;
+    }
+  }
+}
+
+@mixin generate-btn-classes($colors) {
+  @each $name, $color in $colors {
+    .btn-#{$name} {
+      background-color: $color !important;
+      border-color: $color !important;
+      color: #fff !important;
+
+      &:hover {
+        background-color: darken($color, 10%) !important;
+        border-color: darken($color, 10%) !important;
+      }
+    }
+  }
+}
+
+@mixin generate-text-classes($colors) {
+  @each $name, $color in $colors {
+    .text-#{$name} {
+      color: $color !important;
+    }
+  }
+}
+
+@include generate-bg-classes($colors);
+@include generate-btn-classes($colors);
+@include generate-text-classes($colors);
 
 // Required
 @import "../node_modules/bootstrap/scss/variables";
