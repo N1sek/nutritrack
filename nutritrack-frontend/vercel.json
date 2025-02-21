@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "nutritrack-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/nutritrack-frontend"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
