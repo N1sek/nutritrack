@@ -1,5 +1,115 @@
 <app-navbar></app-navbar>
 
-<main class="d-flex min-vh-100 mt-5">
-  <h1 class="display-1">Informes</h1>
+<main class="container-xxl py-5">
+  <h3 class="mb-4">📊 Informes de Nutrición</h3>
+
+  <!-- 🔍 Filtros -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title mb-3">📅 Filtros</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Desde</label>
+          <input type="date" class="form-control" [(ngModel)]="fechaInicio">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Hasta</label>
+          <input type="date" class="form-control" [(ngModel)]="fechaFin">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Tipo de Informe</label>
+          <select class="form-select" [(ngModel)]="tipoInforme">
+            <option value="calorias">Consumo de Calorías</option>
+            <option value="macronutrientes">Distribución de Macronutrientes</option>
+            <option value="agua">Registro de Agua</option>
+            <option value="peso">Peso Corporal</option>
+            <option value="ayuno">Tiempo de Ayuno</option> <!-- Nuevo Informe -->
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📊 Sección de Gráficos -->
+  <div class="row g-4">
+    <div class="col-md-6">
+      <app-box class="h-100">
+        <h5 class="text-center mb-3">🔥 Consumo de Calorías</h5>
+        <canvas id="caloriasChart"></canvas>
+      </app-box>
+    </div>
+
+    <div class="col-md-6">
+      <app-box class="h-100">
+        <h5 class="text-center mb-3">🍽️ Macronutrientes</h5>
+        <canvas id="macronutrientesChart"></canvas>
+      </app-box>
+    </div>
+
+    <div class="col-md-6">
+      <app-box class="h-100">
+        <h5 class="text-center mb-3">💧 Consumo de Agua</h5>
+        <canvas id="aguaChart"></canvas>
+      </app-box>
+    </div>
+
+    <div class="col-md-6">
+      <app-box class="h-100">
+        <h5 class="text-center mb-3">⚖️ Evolución del Peso</h5>
+        <canvas id="pesoChart"></canvas>
+      </app-box>
+    </div>
+
+    <!-- Nuevo Informe: Tiempo de Ayuno -->
+    <div class="col-md-6">
+      <app-box class="h-100">
+        <h5 class="text-center mb-3">⏳ Tiempo de Ayuno</h5>
+        <canvas id="ayunoChart"></canvas>
+      </app-box>
+    </div>
+  </div>
+
+  <!-- 📋 Tabla de Datos -->
+  <div class="card mt-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title mb-3">📑 Datos Detallados</h5>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-primary">
+          <tr>
+            <th>Fecha</th>
+            <th>Calorías (kcal)</th>
+            <th>Proteínas (g)</th>
+            <th>Carbohidratos (g)</th>
+            <th>Grasas (g)</th>
+            <th>Agua (L)</th>
+            <th>Peso (kg)</th>
+            <th>Ayuno (h)</th> <!-- Nuevo dato -->
+          </tr>
+          </thead>
+          <tbody>
+            @for (registro of registros; track registro) {
+              <tr>
+                <td>{{ registro.fecha }}</td>
+                <td>{{ registro.calorias }}</td>
+                <td>{{ registro.proteinas }}</td>
+                <td>{{ registro.carbohidratos }}</td>
+                <td>{{ registro.grasas }}</td>
+                <td>{{ registro.agua }}</td>
+                <td>{{ registro.peso }}</td>
+                <td>{{ registro.ayuno }}</td> <!-- Nuevo dato -->
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📤 Botones de Exportación -->
+  <div class="d-flex justify-content-end mt-3 gap-2">
+    <button class="btn btn-outline-secondary"><i class="bi bi-file-earmark-text"></i> Exportar CSV</button>
+    <button class="btn btn-outline-primary"><i class="bi bi-file-earmark-excel"></i> Exportar Excel</button>
+    <button class="btn btn-outline-danger"><i class="bi bi-file-earmark-pdf"></i> Exportar PDF</button>
+  </div>
 </main>

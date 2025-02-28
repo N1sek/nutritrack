@@ -43,12 +43,12 @@ export class RecetasComponent {
     },
     {
       name: 'Tarta de queso',
-      calories: 500,
-      proteins: 40,
-      carbs: 10,
-      fats: 25,
+      calories: 800,
+      proteins: 10,
+      carbs: 50,
+      fats: 45,
       imageUrl: 'assets/img/plato1.png',
-      tags: ['#keto'],
+      tags: ['#tagüenisimo'],
       mealType: 'Cena',
       isFavorite: false
     }

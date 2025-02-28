@@ -7,8 +7,6 @@
 
 <!-- ==FILTROS EN DESKTOP== -->
 <div class="d-none d-md-flex flex-wrap gap-3 mb-4">
-  <input type="text" class="form-control w-25" placeholder="Buscar receta..." [(ngModel)]="searchQuery"
-         (ngModelChange)="applyFilters()">
 
   <!-- Filtro de Calorias -->
   <div class="dropdown">
@@ -69,7 +67,12 @@
     <i class="bi" [class.bi-heart-fill]="showFavorites" [class.bi-heart]="!showFavorites"></i>
     Favoritos
   </button>
+
+  <input type="text" class="form-control w-25" placeholder="Buscar receta..." [(ngModel)]="searchQuery"
+         (ngModelChange)="applyFilters()">
 </div>
+
+
 
 <!-- ==FILTROS EN OFFCANVAS (MOVIL)== -->
 <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="filtrosOffcanvas">
