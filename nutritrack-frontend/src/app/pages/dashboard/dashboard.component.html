@@ -1,209 +1,94 @@
 <app-navbar></app-navbar>
 
 <main class="container-xxl py-5">
-  <h3 class="mb-4">Bienvenido, Denis</h3>
+  <h3 class="mb-4">Bienvenido, Denis👋</h3>
+
+  <!-- Tarjetas de resumen -->
   <div class="row g-4">
-    <div class="col-md-6 d-flex flex-column">
-      <app-box class="flex-grow-1 d-flex">
-        <div class="d-flex justify-content-center align-items-center mb-3">
-          <h5 class="mb-0">Hoy<i class="bi bi-chevron-down h6"></i></h5>
-        </div>
-        <div class="row">
-          <!-- Donut Chart -->
-          <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <div class="position-relative" style="width: 250px; height: 250px;">
-              <!-- Canvas de Chart.js -->
-              <canvas id="nutricionChart" width="250" height="250"></canvas>
-              <!-- Texto central -->
-              <div class="position-absolute top-50 start-50 translate-middle text-center">
-                <p class="h2 text-black mb-0">
-                  1200<span class="h6 text-muted">/1800kcal</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Datos Macronutrientes -->
-          <div class="col-md-6">
-            <div class="row">
-              <!-- Grasas -->
-              <div class="col-md-12 col-4 mb-3">
-                <p class="h6 text-muted mb-1">Grasas</p>
-                <p class="h2 text-black mb-1">
-                  37<span class="h6 text-muted">/65g</span>
-                </p>
-                <div class="progress">
-                  <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                       aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-
-              <!-- Carbohidratos -->
-              <div class="col-md-12 col-4 mb-3">
-                <p class="h6 text-muted mb-1">Carbohidratos</p>
-                <p class="h2 text-black mb-1">
-                  75<span class="h6 text-muted">/96g</span>
-                </p>
-                <div class="progress">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80"
-                       aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-
-              <!-- Proteínas -->
-              <div class="col-md-12 col-4 mb-3">
-                <p class="h6 text-muted mb-1">Proteínas</p>
-                <p class="h2 text-black mb-1">
-                  125<span class="h6 text-muted">/180g</span>
-                </p>
-                <div class="progress">
-                  <div class="progress-bar bg-salmon" role="progressbar" style="width: 64%" aria-valuenow="64"
-                       aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </app-box>
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="mb-1">🔥 Calorías consumidas</h5>
+        <p class="fs-4 fw-bold text-primary">{{ caloriasConsumidas }} kcal</p>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="mb-1">🥩 Proteínas</h5>
+        <p class="fs-4 fw-bold text-success">{{ proteinasConsumidas }}g</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="mb-1">🍞 Carbohidratos</h5>
+        <p class="fs-4 fw-bold text-warning">{{ carbohidratosConsumidos }}g</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="mb-1">🧈 Grasas</h5>
+        <p class="fs-4 fw-bold text-danger">{{ grasasConsumidas }}g</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- Últimos alimentos añadidos -->
+  <div class="row g-4 mt-4">
     <div class="col-md-6">
-      <div class="row g-4 h-100">
-        <!-- Información personal -->
-        <div class="col-12">
-          <app-box class="h-100">
-            <h4 class="text-center">Información Personal</h4>
-            <div class="d-flex justify-content-around">
-              <div class="d-inline-flex flex-column text-center">
-                <p class="h3 text-black mb-0">
-                  75<span class="h5 text-muted">kg</span>
-                </p>
-                <p class="h6 text-muted mt-0">Peso</p>
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">🍽️ Últimos Alimentos Registrados</h5>
+        <ul class="list-group">
+          @for (alimento of ultimosAlimentos; track alimento) {
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <span class="fw-bold">{{ alimento.nombre }}</span>
+                <span class="badge bg-primary">{{ alimento.calorias }} kcal</span>
               </div>
-              <div class="d-inline-flex flex-column text-center mx-2">
-                <p class="h3 text-black mb-0">
-                  182<span class="h5 text-muted">cm</span>
-                </p>
-                <p class="h6 text-muted mt-0">Altura</p>
-              </div>
-              <div class="d-inline-flex flex-column text-center">
-                <p class="h3 text-black mb-0">
-                  22
-                </p>
-                <p class="h6 text-muted mt-0">Edad</p>
-              </div>
-            </div>
-
-          </app-box>
-        </div>
-        <!-- Recetas sugeridas -->
-        <div class="col-12">
-          <app-box class="h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="mb-0">Recetas sugeridas</h4>
-              <i class="bi bi-arrow-clockwise h5"></i>
-            </div>
-            <!-- Receta 1 -->
-            <div class="d-flex mb-3">
-              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 1">
-              <div class="flex-grow-1">
-                <h6 class="mb-1">Ensalada César</h6>
-                <!-- Leyendas -->
-                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
-                  <small><span class="text-warning">●</span> Grasas 40%</small>
-                  <small><span class="text-success">●</span> Carbs 30%</small>
-                  <small><span class="text-salmon">●</span> Proteínas 30%</small>
-
-                </div>
-                <!-- Progress bars -->
-                <div class="progress" style="height: 8px;">
-                  <div class="progress-bar bg-warning" style="width: 40%"></div>
-                  <div class="progress-bar bg-success" style="width: 30%"></div>
-                  <div class="progress-bar bg-salmon" style="width: 30%"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Receta 2 -->
-            <div class="d-flex mb-3">
-              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 2">
-              <div class="flex-grow-1">
-                <h6 class="mb-1">Pollo Teriyaki</h6>
-                <!-- Leyendas -->
-                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
-                  <small><span class="text-warning">●</span> Grasas 25%</small>
-                  <small><span class="text-success">●</span> Carbs 50%</small>
-                  <small><span class="text-salmon">●</span> Proteínas 25%</small>
-
-                </div>
-                <!-- Progress bars -->
-                <div class="progress" style="height: 8px;">
-                  <div class="progress-bar bg-warning" style="width: 25%"></div>
-                  <div class="progress-bar bg-success" style="width: 50%"></div>
-                  <div class="progress-bar bg-salmon" style="width: 25%"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Receta 3 -->
-            <div class="d-flex">
-              <img src="https://placehold.co/80" class="rounded-3 me-3" alt="Receta 3">
-              <div class="flex-grow-1">
-                <h6 class="mb-1">Salmón al Horno</h6>
-                <!-- Leyendas -->
-                <div class="d-flex flex-column flex-lg-row justify-content-between mb-1">
-                  <small><span class="text-warning">●</span> Grasas 35%</small>
-                  <small><span class="text-success">●</span> Carbs 45%</small>
-                  <small><span class="text-salmon">●</span> Proteínas 20%</small>
-                </div>
-                <!-- Progress bars -->
-                <div class="progress" style="height: 8px;">
-                  <div class="progress-bar bg-warning" style="width: 35%"></div>
-                  <div class="progress-bar bg-success" style="width: 45%"></div>
-                  <div class="progress-bar bg-salmon" style="width: 20%"></div>
-                </div>
-              </div>
-            </div>
-          </app-box>
-        </div>
+              <small>🥩 {{ alimento.proteinas }}g | 🍞 {{ alimento.carbohidratos }}g | 🧈 {{ alimento.grasas }}g</small>
+            </li>
+          }
+        </ul>
       </div>
     </div>
 
-    <!-- Segunda fila -->
-    <!-- Gráfica de peso -->
-    <div class="col-md-6 d-flex flex-column">
-      <app-box class="flex-grow-1 d-flex flex-column">
-        <app-peso></app-peso>
-      </app-box>
+    <!-- Balance Nutricional -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">🎯 Balance Nutricional</h5>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between">
+            🔥 Calorías restantes
+            <span class="badge bg-primary">{{ caloriasRestantes }} kcal</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            🥩 Proteínas restantes
+            <span class="badge bg-success">{{ proteinasRestantes }} g</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            🍞 Carbohidratos restantes
+            <span class="badge bg-warning">{{ carbohidratosRestantes }} g</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            🧈 Grasas restantes
+            <span class="badge bg-danger">{{ grasasRestantes }} g</span>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <!-- Agua -->
-    <div class="col-md-6 d-flex flex-column">
-      <app-box class="flex-grow-1 d-flex">
-        <h4 class="text-center mb-4">Agua</h4>
-
-        <div class="d-flex justify-content-center align-items-center">
-          <div class="position-relative" style="width: 250px; height: 125px;">
-            <!-- Canvas de Chart.js -->
-            <canvas id="aguaChart" width="250" height="125"></canvas>
-
-            <!-- Texto central -->
-            <div class="position-absolute top-75 start-50 translate-middle text-center">
-              <p class="h3 mb-0">1,5L</p>
-              <small class="text-muted">/2L</small>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center mt-5">
-          <button class="btn btn-primary">Agregar Agua</button>
-        </div>
-
-
-
-      </app-box>
+  <!-- Sección de gráficos (última en la página) -->
+  <div class="row g-4 mt-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">📊 Consumo de Calorías</h5>
+        <canvas id="caloriasChart"></canvas>
+      </div>
     </div>
-
-
-
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">⚖️ Evolución del Peso</h5>
+        <canvas id="pesoChart"></canvas>
+      </div>
+    </div>
   </div>
 </main>

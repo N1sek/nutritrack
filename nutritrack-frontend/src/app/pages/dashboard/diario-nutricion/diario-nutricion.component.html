@@ -1,117 +1,92 @@
 <app-navbar></app-navbar>
 
 <main class="container-xxl py-5">
-  <app-box>
-    <div class="d-flex justify-content-center align-items-center mb-4">
-      <h4 class="mb-0">Hoy <i class="bi bi-chevron-down"></i></h4>
-    </div>
-    <!-- Sección: Desayuno -->
-    <div class="mb-4">
-      <div class="bg-sky p-2 rounded-3">
-        <h5 class="mb-0">Desayuno</h5>
-      </div>
-      <div
-        class="d-flex justify-content-between align-items-center mb-2 bg-light px-3 py-2 rounded-3"
-      >
-        <div class="">
-          <p class="mb-0">Tostada con aguacate</p>
-          <small class="text-muted">100g</small>
-        </div>
-        <div class="text-end">
-          <p class="mb-0">200 kcal</p>
-          <div>
-            <button class="btn btn-sm btn-outline-primary me-1">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="bi bi-trash"></i>
-            </button>
+  <h3 class="mb-4 text-center">🍽️ Mis Comidas</h3>
+
+  <!-- Secciones de comidas -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <app-box>
+        <h5 class="mb-3 text-center">📅 Hoy <i class="bi bi-chevron-down"></i></h5>
+
+        @for (meal of ['Desayuno', 'Comida', 'Almuerzo', 'Cena']; track meal) {
+          <div class="mb-4">
+            <div class="bg-primary text-white p-2 rounded-3">
+              <h5 class="mb-0">{{ meal }}</h5>
+            </div>
+
+            <!-- Lista de alimentos -->
+            <div class="d-flex justify-content-between align-items-center bg-light px-3 py-2 rounded-3 mb-2">
+              <div>
+                <p class="mb-0">Tostada con aguacate</p>
+                <small class="text-muted">100g</small>
+              </div>
+              <div class="text-end">
+                <p class="mb-0">200 kcal</p>
+                <div>
+                  <button class="btn btn-sm btn-outline-primary me-1">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center bg-light px-3 py-2 rounded-3 mb-2">
+              <div>
+                <p class="mb-0">Batido de proteína</p>
+                <small class="text-muted">250ml</small>
+              </div>
+              <div class="text-end">
+                <p class="mb-0">300 kcal</p>
+                <div>
+                  <button class="btn btn-sm btn-outline-primary me-1">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón añadir comida -->
+            <button class="btn btn-primary btn-sm mt-2">Añadir comida</button>
           </div>
-        </div>
-      </div>
-      <!-- Botón añadir comida -->
-      <button class="btn btn-primary btn-sm">Añadir comida</button>
+        }
+      </app-box>
     </div>
-    <!-- Sección: Comida -->
-    <div class="mb-4">
-      <div class="bg-sky p-2 rounded-3">
-        <h5 class="mb-0">Comida</h5>
-      </div>
-      <div class="d-flex justify-content-between align-items-center mb-2 bg-light px-3 py-2 rounded-3">
-        <div>
-          <p class="mb-0">Ensalada César</p>
-          <small class="text-muted">150g</small>
+  </div>
+
+  <!-- Resumen Nutricional -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-8">
+      <app-box class="p-4">
+        <h4 class="text-center">📊 Resumen Nutricional</h4>
+
+        <div class="row">
+          @for (macro of [
+            { label: '🥩 Proteínas', value: '120g', color: 'bg-salmon' },
+            { label: '🍞 Carbohidratos', value: '180g', color: 'bg-success' },
+            { label: '🧈 Grasas', value: '70g', color: 'bg-warning' }
+          ]; track macro) {
+            <div class="col-12 col-md-4 text-center mb-4">
+              <p class="h6 text-muted mb-2">{{ macro.label }}</p>
+              <p class="h2 text-black mb-2">{{ macro.value }}</p>
+              <div class="d-flex justify-content-center">
+                <div class="progress w-100" style="max-width: 250px; height: 8px;">
+                  <div class="progress-bar {{ macro.color }}" style="width: 70%;"></div>
+                </div>
+              </div>
+            </div>
+          }
         </div>
-        <div class="text-end">
-          <p class="mb-0">350 kcal</p>
-          <div>
-            <button class="btn btn-sm btn-outline-primary me-1">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-sm">Añadir comida</button>
+
+        <hr>
+        <p class="text-center h5">🔥 Calorías Totales: <strong>1500 kcal</strong></p>
+      </app-box>
     </div>
-    <!-- Sección: Almuerzo -->
-    <div class="mb-4">
-      <div class="bg-sky p-2 rounded-3">
-        <h5 class="mb-0">Almuerzo</h5>
-      </div>
-      <!-- Sin comidas -->
-      <button class="btn btn-primary btn-sm mt-2">Añadir comida</button>
-    </div>
-    <!-- Sección: Cena -->
-    <div class="mb-4">
-      <div class="bg-sky p-2 rounded-3"><h5 class="mb-0">Cena</h5></div>
-      <!-- Ejemplo de comida -->
-      <div class="d-flex justify-content-between align-items-center mb-2 bg-light px-3 py-2 rounded-3">
-        <div>
-          <p class="mb-0">Salmón al horno</p>
-          <small class="text-muted">200g</small>
-        </div>
-        <div class="text-end">
-          <p class="mb-0">400 kcal</p>
-          <div>
-            <button class="btn btn-sm btn-outline-primary me-1">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-sm">Añadir comida</button>
-    </div>
-    <!-- Sección: Agua -->
-    <div class="mb-4">
-      <div class="bg-sky p-2 rounded-3"><h5 class="mb-0">Agua</h5></div>
-      <!-- Ejemplo de consumo -->
-      <div class="d-flex justify-content-between align-items-center mb-2 bg-light px-3 py-2 rounded-3">
-        <div>
-          <p class="mb-0">Agua</p>
-          <small class="text-muted">1,5L</small>
-        </div>
-        <div class="text-end">
-          <div>
-            <button class="btn btn-sm btn-outline-primary me-1">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-sm">Añadir consumo</button>
-    </div>
-    <!-- Recuento total -->
-    <div class="border-top pt-3 mt-4">
-      <h5 class="text-end">Total: 950 kcal</h5>
-    </div>
-  </app-box>
+  </div>
 </main>

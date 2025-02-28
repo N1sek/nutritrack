@@ -1,5 +1,5 @@
 <div class="col">
-  <div class="card h-100 position-relative" data-bs-toggle="modal" data-bs-target="#modalReceta">
+  <div class="card h-100 position-relative">
     <div class="position-relative">
       <!-- Tipo de comida -->
       <span class="badge bg-secondary position-absolute top-0 start-0 m-2">{{ mealType }}</span>
@@ -15,7 +15,7 @@
       <img [src]="imageUrl" class="card-img-top" [alt]="name">
     </div>
 
-    <div class="card-body d-flex flex-column text-center">
+    <div class="card-body d-flex flex-column text-center" data-bs-toggle="modal" data-bs-target="#modalReceta">
       <!-- Nombre de la Receta con Tooltip -->
       <h6 class="card-title text-truncate"
           style="min-height: 1.5rem;"
