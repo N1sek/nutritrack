@@ -3,7 +3,6 @@
 <main class="container-xxl py-5">
   <h3 class="mb-4 text-center">🍽️ Mis Comidas</h3>
 
-  <!-- Secciones de comidas -->
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <app-box>
@@ -15,77 +14,54 @@
               <h5 class="mb-0">{{ meal }}</h5>
             </div>
 
-            <!-- Lista de alimentos -->
-            <div class="d-flex justify-content-between align-items-center bg-light px-3 py-2 rounded-3 mb-2">
-              <div>
-                <p class="mb-0">Tostada con aguacate</p>
-                <small class="text-muted">100g</small>
-              </div>
-              <div class="text-end">
-                <p class="mb-0">200 kcal</p>
-                <div>
-                  <button class="btn btn-sm btn-outline-primary me-1">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger">
-                    <i class="bi bi-trash"></i>
-                  </button>
+            @for (comida of comidas; track comida.id) {
+              <div class="d-flex align-items-center bg-light px-3 py-2 rounded-3 mb-2">
+                <img [src]="comida.imagen || 'https://placehold.co/80x80'" class="rounded me-3" style="width: 80px; height: 80px;" [alt]="comida.nombre" (error)="comida.imagen = 'https://placehold.co/80x80'">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ comida.nombre }}</h6>
+                  <small class="text-muted">{{ comida.cantidad }}</small>
+                  <p class="mb-0">🔥 {{ comida.calorias }} kcal | 🥩 {{ comida.proteinas }}g | 🍞 {{ comida.carbohidratos }}g | 🧈 {{ comida.grasas }}g</p>
+                </div>
+                <div class="d-flex">
+                  <button class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil-square"></i></button>
+                  <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                 </div>
               </div>
-            </div>
+            }
 
-            <div class="d-flex justify-content-between align-items-center bg-light px-3 py-2 rounded-3 mb-2">
-              <div>
-                <p class="mb-0">Batido de proteína</p>
-                <small class="text-muted">250ml</small>
-              </div>
-              <div class="text-end">
-                <p class="mb-0">300 kcal</p>
-                <div>
-                  <button class="btn btn-sm btn-outline-primary me-1">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botón añadir comida -->
             <button class="btn btn-primary btn-sm mt-2">Añadir comida</button>
           </div>
         }
+
+        <!-- Total de Nutrientes Consumidos -->
+        <div class="p-3 mt-3 bg-light rounded-3 text-center">
+          <h5 class="mb-2">📊 Total de Nutrientes Consumidos</h5>
+          <p class="mb-0">🔥 {{ totalNutrientes.calorias }} kcal | 🥩 {{ totalNutrientes.proteinas }}g | 🍞 {{ totalNutrientes.carbohidratos }}g | 🧈 {{ totalNutrientes.grasas }}g</p>
+        </div>
       </app-box>
     </div>
   </div>
 
-  <!-- Resumen Nutricional -->
+  <!-- Sección de Recomendaciones -->
   <div class="row justify-content-center mt-5">
     <div class="col-lg-8">
-      <app-box class="p-4">
-        <h4 class="text-center">📊 Resumen Nutricional</h4>
-
+      <app-box>
+        <h4 class="text-center">✨ Recetas Recomendadas</h4>
         <div class="row">
-          @for (macro of [
-            { label: '🥩 Proteínas', value: '120g', color: 'bg-salmon' },
-            { label: '🍞 Carbohidratos', value: '180g', color: 'bg-success' },
-            { label: '🧈 Grasas', value: '70g', color: 'bg-warning' }
-          ]; track macro) {
-            <div class="col-12 col-md-4 text-center mb-4">
-              <p class="h6 text-muted mb-2">{{ macro.label }}</p>
-              <p class="h2 text-black mb-2">{{ macro.value }}</p>
-              <div class="d-flex justify-content-center">
-                <div class="progress w-100" style="max-width: 250px; height: 8px;">
-                  <div class="progress-bar {{ macro.color }}" style="width: 70%;"></div>
+          @for (rec of recomendaciones; track rec.id) {
+            <div class="col-md-4 d-flex align-items-stretch">
+              <div class="card shadow-sm p-2 w-100">
+                <img [src]="rec.imagen" class="card-img-top rounded" style="height: 120px; object-fit: cover;">
+                <div class="card-body text-center d-flex flex-column">
+                  <h6 class="card-title">{{ rec.nombre }}</h6>
+                  <p class="text-muted small flex-grow-1">🔥 {{ rec.calorias }} kcal | 🥩 {{ rec.proteinas }}g | 🍞 {{ rec.carbohidratos }}g | 🧈 {{ rec.grasas }}g</p>
+                  <p class="text-muted small flex-grow-1">Ingredientes: {{ rec.ingredientes.join(', ') }}</p>
+                  <p class="small flex-grow-1">{{ rec.preparacion }}</p>
                 </div>
               </div>
             </div>
           }
         </div>
-
-        <hr>
-        <p class="text-center h5">🔥 Calorías Totales: <strong>1500 kcal</strong></p>
       </app-box>
     </div>
   </div>
