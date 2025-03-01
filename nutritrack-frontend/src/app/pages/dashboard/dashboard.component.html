@@ -34,20 +34,29 @@
   <!-- Últimos alimentos añadidos -->
   <div class="row g-4 mt-4">
     <div class="col-md-6">
+      <!-- Lista de alimentos consumidos en el día -->
       <div class="card shadow-sm p-3">
-        <h5 class="mb-3">🍽️ Últimos Alimentos Registrados</h5>
+        <h5 class="mb-3">🍽️ Comidas registradas</h5>
         <ul class="list-group">
-          @for (alimento of ultimosAlimentos; track alimento) {
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <span class="fw-bold">{{ alimento.nombre }}</span>
-                <span class="badge bg-primary">{{ alimento.calorias }} kcal</span>
+          @for (comida of ultimasComidas; track comida.id) {
+            <li class="list-group-item d-flex align-items-center">
+              <!-- Imagen del alimento con fallback a placeholder -->
+              <img [src]="comida.imagen || 'https://placehold.co/80x80'"
+                   class="rounded me-3"
+                   style="width: 80px; height: 80px;"
+                   [alt]="comida.nombre"
+                   (error)="comida.imagen = 'https://placehold.co/80x80'">
+
+              <div class="flex-grow-1">
+                <h6 class="mb-1">{{ comida.nombre }}</h6>
+                <small class="text-muted">{{ comida.cantidad }}</small>
+                <p class="mb-0">🔥 {{ comida.calorias }} kcal | 🥩 {{ comida.proteinas }}g | 🍞 {{ comida.carbohidratos }}g | 🧈 {{ comida.grasas }}g</p>
               </div>
-              <small>🥩 {{ alimento.proteinas }}g | 🍞 {{ alimento.carbohidratos }}g | 🧈 {{ alimento.grasas }}g</small>
             </li>
           }
         </ul>
       </div>
+
     </div>
 
     <!-- Balance Nutricional -->

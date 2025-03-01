@@ -20,11 +20,12 @@ export class DashboardComponent implements AfterViewInit {
   objetivoCarbohidratos = 250;
   grasasConsumidas = 80;
   objetivoGrasas = 90;
+  
 
-  ultimosAlimentos = [
-    { nombre: 'Tostada con aguacate', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
-    { nombre: 'Pollo a la plancha', calorias: 300, proteinas: 35, carbohidratos: 0, grasas: 8 },
-    { nombre: 'Yogur con frutos secos', calorias: 250, proteinas: 10, carbohidratos: 30, grasas: 12 }
+  ultimasComidas = [
+    { id: 1, nombre: 'Tostada con aguacate', imagen: 'https://acortar.link/uKXNxT', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
+    { id: 2, nombre: 'Batido de proteína', imagen: 'https://acortar.link/1PEDpV', cantidad: '250ml', calorias: 300, proteinas: 25, carbohidratos: 10, grasas: 5 },
+    { id: 3, nombre: 'Pollo a la plancha', imagen: 'https://acortar.link/frqOH9', cantidad: '150g', calorias: 350, proteinas: 40, carbohidratos: 0, grasas: 8 }
   ];
 
   ngAfterViewInit() {
