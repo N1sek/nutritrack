@@ -20,7 +20,7 @@ export class DashboardComponent implements AfterViewInit {
   objetivoCarbohidratos = 250;
   grasasConsumidas = 80;
   objetivoGrasas = 90;
-  
+
 
   ultimasComidas = [
     { id: 1, nombre: 'Tostada con aguacate', imagen: 'https://acortar.link/uKXNxT', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
