@@ -16,13 +16,11 @@ public class AlergenoController {
     @Autowired
     private AlergenoService alergenoService;
 
-    // ✅ Obtener todos los alérgenos
     @GetMapping
     public ResponseEntity<List<Alergeno>> getAllAlergenos() {
         return ResponseEntity.ok(alergenoService.getAllAlergenos());
     }
 
-    // ✅ Obtener un alérgeno por ID
     @GetMapping("/{id}")
     public ResponseEntity<Alergeno> getAlergenoById(@PathVariable Long id) {
         return alergenoService.getAlergenoById(id)
@@ -30,7 +28,6 @@ public class AlergenoController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // ✅ Guardar un nuevo alérgeno
     @PostMapping
     public ResponseEntity<Alergeno> saveAlergeno(@RequestBody Alergeno alergeno) {
         return ResponseEntity.ok(alergenoService.saveAlergeno(alergeno));

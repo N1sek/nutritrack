@@ -16,13 +16,11 @@ public class AlimentoController {
     @Autowired
     private AlimentoService alimentoService;
 
-    // ✅ Obtener todos los alimentos
     @GetMapping
     public ResponseEntity<List<Alimento>> getAllAlimentos() {
         return ResponseEntity.ok(alimentoService.getAllAlimentos());
     }
 
-    // ✅ Buscar alimento por ID
     @GetMapping("/{id}")
     public ResponseEntity<Alimento> getAlimentoById(@PathVariable Long id) {
         return alimentoService.getAlimentoById(id)
@@ -30,13 +28,11 @@ public class AlimentoController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // ✅ Buscar alimento por nombre
     @GetMapping("/buscar")
     public ResponseEntity<Optional<Alimento>> getAlimentoByName(@RequestParam String name) {
         return ResponseEntity.ok(alimentoService.getAlimentoByName(name));
     }
 
-    // ✅ Guardar un alimento
     @PostMapping
     public ResponseEntity<Alimento> saveAlimento(@RequestBody Alimento alimento) {
         return ResponseEntity.ok(alimentoService.saveAlimento(alimento));

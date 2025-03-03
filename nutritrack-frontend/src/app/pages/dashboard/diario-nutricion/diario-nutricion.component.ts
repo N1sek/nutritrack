@@ -14,9 +14,9 @@ import { BoxComponent } from '../../../shared/components/box/box.component';
 export class DiarioNutricionComponent {
 
   comidas = [
-    { id: 1, nombre: 'Tostada con aguacate', imagen: 'https://acortar.link/uKXNxT', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
-    { id: 2, nombre: 'Batido de proteína', imagen: 'https://acortar.link/1PEDpV', cantidad: '250ml', calorias: 300, proteinas: 25, carbohidratos: 10, grasas: 5 },
-    { id: 3, nombre: 'Pollo a la plancha', imagen: 'https://acortar.link/frqOH9', cantidad: '150g', calorias: 350, proteinas: 40, carbohidratos: 0, grasas: 8 }
+    { id: 1, nombre: 'Tostada con aguacate', imagen: '', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
+    { id: 2, nombre: 'Batido de proteína', imagen: '', cantidad: '250ml', calorias: 300, proteinas: 25, carbohidratos: 10, grasas: 5 },
+    { id: 3, nombre: 'Pollo a la plancha', imagen: '', cantidad: '150g', calorias: 350, proteinas: 40, carbohidratos: 0, grasas: 8 }
   ];
 
   objetivoCalorias = 2200;

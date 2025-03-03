@@ -19,10 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable()) // 🔹 Desactivar CSRF para pruebas en Postman
+                .csrf(csrf -> csrf.disable()) // Desactivar CSRF para pruebas en Postman
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/api/users/register", "/api/users/login").permitAll() // 🔹 Permitir acceso sin autenticación
+                        .requestMatchers("/api/users/register", "/api/users/login").permitAll() // Permitir acceso sin autenticación
 
                         .anyRequest().authenticated()
 

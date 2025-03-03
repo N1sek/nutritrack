@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit{
   password: string = '';
 
   ngOnInit() {
-
+    alert(`Las credenciales son: 'test@example.com' y password: 123`)
   }
 
   login() {

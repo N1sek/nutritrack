@@ -23,9 +23,9 @@ export class DashboardComponent implements AfterViewInit {
 
 
   ultimasComidas = [
-    { id: 1, nombre: 'Tostada con aguacate', imagen: 'https://acortar.link/uKXNxT', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
-    { id: 2, nombre: 'Batido de proteína', imagen: 'https://acortar.link/1PEDpV', cantidad: '250ml', calorias: 300, proteinas: 25, carbohidratos: 10, grasas: 5 },
-    { id: 3, nombre: 'Pollo a la plancha', imagen: 'https://acortar.link/frqOH9', cantidad: '150g', calorias: 350, proteinas: 40, carbohidratos: 0, grasas: 8 }
+    { id: 1, nombre: 'Tostada con aguacate', imagen: '', cantidad: '100g', calorias: 200, proteinas: 5, carbohidratos: 20, grasas: 10 },
+    { id: 2, nombre: 'Batido de proteína', imagen: '', cantidad: '250ml', calorias: 300, proteinas: 25, carbohidratos: 10, grasas: 5 },
+    { id: 3, nombre: 'Pollo a la plancha', imagen: '', cantidad: '150g', calorias: 350, proteinas: 40, carbohidratos: 0, grasas: 8 }
   ];
 
   ngAfterViewInit() {
@@ -57,7 +57,7 @@ export class DashboardComponent implements AfterViewInit {
         labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
         datasets: [{
           label: 'Peso (kg)',
-          data: [78, 77.5, 77, 76.8],
+          data: [78, 77.5, 77, 72],
           backgroundColor: '#4eabf9'
         }]
       }
