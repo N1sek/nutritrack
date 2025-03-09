@@ -3,6 +3,8 @@ package org.nutritrack.nutritrack.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "alimentos")
 @NoArgsConstructor
@@ -44,5 +46,12 @@ public class Alimento {
     @Column(nullable = false)
     private String createdBy;
 
+    @ManyToMany
+    @JoinTable(
+            name = "alimentos_alergenos",
+            joinColumns = @JoinColumn(name = "id_alimento"),
+            inverseJoinColumns = @JoinColumn(name = "id_alergeno")
+    )
+    private List<Alergeno> alergenos;
 
 }

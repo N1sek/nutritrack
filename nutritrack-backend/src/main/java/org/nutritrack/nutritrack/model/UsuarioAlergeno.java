@@ -1,5 +1,6 @@
 package org.nutritrack.nutritrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,9 +19,11 @@ public class UsuarioAlergeno {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "alergeno_id", nullable = false)
     private Alergeno alergeno;
+
 }

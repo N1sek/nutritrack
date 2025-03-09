@@ -1,5 +1,6 @@
 package org.nutritrack.nutritrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.nutritrack.nutritrack.enums.NivelActividad;
@@ -31,7 +32,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
     @Column(nullable = false)
@@ -61,9 +62,21 @@ public class User {
     private LocalDateTime createdOn;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
     private List<Alimento> alimentos;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
     private List<UsuarioAlergeno> usuarioAlergenos;
+
+    @ManyToMany
+    @JoinTable(
+            name = "usuarios_alergenos",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "alergeno_id")
+    )
+    private List<Alergeno> alergenos;
 
 }

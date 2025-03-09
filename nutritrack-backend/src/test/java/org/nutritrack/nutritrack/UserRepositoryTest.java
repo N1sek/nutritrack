@@ -9,6 +9,7 @@ import org.nutritrack.nutritrack.model.User;
 import org.nutritrack.nutritrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
@@ -23,16 +24,19 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Test
     public void testCreateUser() {
-        Optional<User> existingUser = userRepository.findByEmail("user@example.com");
+        Optional<User> existingUser = userRepository.findByEmail("test@example.com");
         existingUser.ifPresent(userRepository::delete);
+
 
         User user = User.builder()
                 .rol(Rol.USER)
-                .email("user@example.com")
-                .password("password")
+                .email("test@example.com")
+                .password(passwordEncoder.encode("123"))
                 .nickname("testuser")
                 .fullName("Test User")
                 .weight(70.0)
@@ -48,7 +52,7 @@ public class UserRepositoryTest {
 
         User foundUser = userRepository.findById(user.getId()).orElse(null);
         assertNotNull(foundUser);
-        assertEquals("user@example.com", foundUser.getEmail());
+        assertEquals("test@example.com", foundUser.getEmail());
         assertEquals("testuser", foundUser.getNickname());
     }
 }

@@ -1,5 +1,6 @@
 package org.nutritrack.nutritrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,16 +23,8 @@ public class Alergeno {
     private String nombre;
 
     @ManyToMany(mappedBy = "alergenos")
-    private List<User> usuarios;
-
-    @ManyToMany(mappedBy = "alergenos")
+    @JsonIgnore
+    @ToString.Exclude
     private List<Alimento> alimentos;
 
-    @ManyToMany
-    @JoinTable(
-            name = "alimentos_alergenos",
-            joinColumns = @JoinColumn(name = "id_alimento"),
-            inverseJoinColumns = @JoinColumn(name = "id_alergeno")
-    )
-    private List<Alergeno> alergenos;
 }

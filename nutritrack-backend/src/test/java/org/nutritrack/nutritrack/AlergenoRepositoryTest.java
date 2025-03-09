@@ -5,9 +5,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.nutritrack.nutritrack.enums.NivelActividad;
 import org.nutritrack.nutritrack.enums.Objetivo;
 import org.nutritrack.nutritrack.enums.Rol;
+import org.nutritrack.nutritrack.model.Alergeno;
 import org.nutritrack.nutritrack.model.Alimento;
 import org.nutritrack.nutritrack.model.User;
-import org.nutritrack.nutritrack.repository.AlimentoRepository;
+import org.nutritrack.nutritrack.repository.AlergenoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -20,26 +21,24 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class AlimentoRepositoryTest {
+public class AlergenoRepositoryTest {
 
     @Autowired
-    private AlimentoRepository alimentoRepository;
+    AlergenoRepository alergenoRepository;
 
     @Test
-    public void createAlimento(){
-        Optional<Alimento> existingAlimento = alimentoRepository.findByName("Cereales");
-        existingAlimento.ifPresent(alimentoRepository::delete);
+    public void testCreateAlergeno() {
+        Optional<Alergeno> existingAlergeno = alergenoRepository.findByNombre("Soja");
+        existingAlergeno.ifPresent(alergenoRepository::delete);
 
-        Alimento alimento = Alimento.builder()
-                .name("Cereales")
-                .description("Cereales chokomilk")
-                .carbs(180)
-                .proteins(6)
-                .fats(12)
+        Alergeno alergeno = Alergeno.builder()
+                .nombre("Soja")
                 .build();
-        alimentoRepository.save(alimento);
+        alergenoRepository.save(alergeno);
 
 
+        Alergeno foundAlergeno = alergenoRepository.findById(alergeno.getId()).orElse(null);
+        assertNotNull(foundAlergeno);
+        assertEquals("Soja", foundAlergeno.getNombre());
     }
-
 }
