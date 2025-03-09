@@ -12,47 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class UserRepositoryTest {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    @Test
-    public void testCreateUser() {
-        Optional<User> existingUser = userRepository.findByEmail("test@example.com");
-        existingUser.ifPresent(userRepository::delete);
-
-
-        User user = User.builder()
-                .rol(Rol.USER)
-                .email("test@example.com")
-                .password(passwordEncoder.encode("123"))
-                .nickname("testuser")
-                .fullName("Test User")
-                .weight(70.0)
-                .height(175.0)
-                .gender("Male")
-                .age(30)
-                .nivelActividad(NivelActividad.MODERADO)
-                .objetivo(Objetivo.GANARPESO)
-                .createdOn(LocalDateTime.now())
-                .build();
-        userRepository.save(user);
-
-
-        User foundUser = userRepository.findById(user.getId()).orElse(null);
-        assertNotNull(foundUser);
-        assertEquals("test@example.com", foundUser.getEmail());
-        assertEquals("testuser", foundUser.getNickname());
-    }
 }

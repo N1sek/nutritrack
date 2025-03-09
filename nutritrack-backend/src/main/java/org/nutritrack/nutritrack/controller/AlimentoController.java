@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/alimentos")
@@ -16,25 +15,22 @@ public class AlimentoController {
     @Autowired
     private AlimentoService alimentoService;
 
-    @GetMapping
-    public ResponseEntity<List<Alimento>> getAllAlimentos() {
-        return ResponseEntity.ok(alimentoService.getAllAlimentos());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Alimento> getAlimentoById(@PathVariable Long id) {
-        return alimentoService.getAlimentoById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
     @GetMapping("/buscar")
-    public ResponseEntity<Optional<Alimento>> getAlimentoByName(@RequestParam String name) {
-        return ResponseEntity.ok(alimentoService.getAlimentoByName(name));
+    public ResponseEntity<List<Alimento>> buscarAlimentos(@RequestParam String nombre) {
+        List<Alimento> alimentos = alimentoService.buscarAlimentosPorNombre(nombre);
+        return ResponseEntity.ok(alimentos);
     }
 
-    @PostMapping
-    public ResponseEntity<Alimento> saveAlimento(@RequestBody Alimento alimento) {
-        return ResponseEntity.ok(alimentoService.saveAlimento(alimento));
+    // Guardar un alimento seleccionado desde OpenFoodDatabase
+    @PostMapping("/guardar-seleccion")
+    public ResponseEntity<Alimento> guardarAlimentoSeleccionado(@RequestBody Alimento alimento) {
+        return ResponseEntity.ok(alimentoService.guardarAlimentoSeleccionado(alimento));
     }
+
+    @PostMapping("/crear-alimento")
+    public ResponseEntity<Alimento> crearAlimento(@RequestBody Alimento alimento, @RequestParam Long userId) {
+        return ResponseEntity.ok(alimentoService.crearAlimento(alimento, userId));
+    }
+
 }
+

@@ -8,38 +8,21 @@ import org.nutritrack.nutritrack.enums.Rol;
 import org.nutritrack.nutritrack.model.Alimento;
 import org.nutritrack.nutritrack.model.User;
 import org.nutritrack.nutritrack.repository.AlimentoRepository;
+import org.nutritrack.nutritrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 @ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class AlimentoRepositoryTest {
 
-    @Autowired
-    private AlimentoRepository alimentoRepository;
-
-    @Test
-    public void createAlimento(){
-        Optional<Alimento> existingAlimento = alimentoRepository.findByName("Cereales");
-        existingAlimento.ifPresent(alimentoRepository::delete);
-
-        Alimento alimento = Alimento.builder()
-                .name("Cereales")
-                .description("Cereales chokomilk")
-                .carbs(180)
-                .proteins(6)
-                .fats(12)
-                .build();
-        alimentoRepository.save(alimento);
-
-
-    }
 
 }

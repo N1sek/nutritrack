@@ -3,10 +3,12 @@ package org.nutritrack.nutritrack.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
 import org.nutritrack.nutritrack.enums.NivelActividad;
 import org.nutritrack.nutritrack.enums.Objetivo;
 import org.nutritrack.nutritrack.enums.Rol;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,11 +40,11 @@ public class User {
     @Column(nullable = false)
     private String fullName;
 
-    @Column(nullable = false)
-    private double weight;
+    @Column(nullable = false, precision = 5, scale = 2)
+    private BigDecimal weight;
 
-    @Column(nullable = false)
-    private double height;
+    @Column(nullable = false, precision = 5, scale = 2)
+    private BigDecimal height;
 
     @Column(nullable = false)
     private String gender;
@@ -79,4 +81,14 @@ public class User {
     )
     private List<Alergeno> alergenos;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<UsuarioRecetaFavorita> recetasFavoritas;
+
+
+    @PrePersist
+    public void prePersist() {
+        this.createdOn = LocalDateTime.now();
+    }
 }

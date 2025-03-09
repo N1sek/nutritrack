@@ -33,9 +33,31 @@ public class RecetaController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/sin-alergenos")
+    public ResponseEntity<List<Receta>> getRecetasSinAlergenos(@RequestParam List<String> alergenoNombres) {
+        return ResponseEntity.ok(recetaService.getRecetasSinAlergenos(alergenoNombres));
+    }
+
+
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Receta>> buscarRecetas(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) Double minCalorias,
+            @RequestParam(required = false) Double maxCalorias,
+            @RequestParam(required = false) String tipoComida,
+            @RequestParam(required = false) Boolean favoritos,
+            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) List<Long> alergenoIds) {
+
+        List<Receta> recetas = recetaService.buscarRecetasFiltradas(nombre, minCalorias, maxCalorias, tipoComida, favoritos, userId, alergenoIds);
+        return ResponseEntity.ok(recetas);
+    }
+
+
+
     @PostMapping
-    public ResponseEntity<Receta> saveReceta(@RequestBody Receta receta) {
-        return ResponseEntity.ok(recetaService.saveReceta(receta));
+    public ResponseEntity<Receta> saveReceta(@RequestBody Receta receta, @RequestParam Long userId) {
+        return ResponseEntity.ok(recetaService.saveReceta(receta, userId));
     }
 
     @DeleteMapping("/{id}")

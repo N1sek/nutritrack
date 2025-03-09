@@ -1,7 +1,9 @@
 package org.nutritrack.nutritrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.nutritrack.nutritrack.enums.TipoComida;
 
 import java.util.List;
 
@@ -25,9 +27,32 @@ public class Receta {
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_receta_usuario"))
+    @JsonIgnore
+    @ToString.Exclude
     private User user;
 
     @OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecetaAlimento> ingredientes;
+
+    @Column
+    private String imageUrl; // Imagen de la receta opcional
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoComida tipoComida;
+
+    @Column(nullable = true)
+    private Double caloriasTotales;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "recetas_alergenos",
+            joinColumns = @JoinColumn(name = "receta_id"),
+            inverseJoinColumns = @JoinColumn(name = "alergeno_id")
+    )
+    private List<Alergeno> alergenos;
+
 }
+

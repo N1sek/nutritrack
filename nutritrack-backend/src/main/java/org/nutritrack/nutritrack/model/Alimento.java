@@ -1,8 +1,11 @@
 package org.nutritrack.nutritrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.nutritrack.nutritrack.enums.UnidadMedida;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -21,30 +24,36 @@ public class Alimento {
     @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column
-    private double calories;
+    @Column(nullable = false, precision = 6, scale = 2)
+    private BigDecimal calories;
 
-    @Column
-    private double proteins;
+    @Column(nullable = false, precision = 6, scale = 2)
+    private BigDecimal proteins;
 
-    @Column
-    private double fats;
+    @Column(nullable = false, precision = 6, scale = 2)
+    private BigDecimal fats;
 
-    @Column
-    private double carbs;
+    @Column(nullable = false, precision = 6, scale = 2)
+    private BigDecimal carbs;
 
-    @Column
-    private int quantity;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal quantity;
 
     @Column(nullable = false)
-    private String createdBy;
+    @Enumerated(EnumType.STRING)
+    private UnidadMedida unidadMedida;
+
+    @Column
+    private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_alimento_usuario"))
+    @JsonIgnore
+    @ToString.Exclude
+    private User user;
 
     @ManyToMany
     @JoinTable(
@@ -54,4 +63,13 @@ public class Alimento {
     )
     private List<Alergeno> alergenos;
 
+    @Column(nullable = false)
+    private String createdBy;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.createdBy == null && this.user != null) {
+            this.createdBy = this.user.getNickname();
+        }
+    }
 }

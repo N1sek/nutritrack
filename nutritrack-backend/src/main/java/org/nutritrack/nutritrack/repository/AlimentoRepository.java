@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
     Optional<Alimento> findByName(String name);
-
+    List<Alimento> findByNameContainingIgnoreCase(String name);
     List<Alimento> findByCaloriesLessThanEqual(double calorias);
 }

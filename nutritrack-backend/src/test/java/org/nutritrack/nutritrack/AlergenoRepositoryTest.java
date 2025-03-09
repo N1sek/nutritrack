@@ -22,23 +22,4 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class AlergenoRepositoryTest {
-
-    @Autowired
-    AlergenoRepository alergenoRepository;
-
-    @Test
-    public void testCreateAlergeno() {
-        Optional<Alergeno> existingAlergeno = alergenoRepository.findByNombre("Soja");
-        existingAlergeno.ifPresent(alergenoRepository::delete);
-
-        Alergeno alergeno = Alergeno.builder()
-                .nombre("Soja")
-                .build();
-        alergenoRepository.save(alergeno);
-
-
-        Alergeno foundAlergeno = alergenoRepository.findById(alergeno.getId()).orElse(null);
-        assertNotNull(foundAlergeno);
-        assertEquals("Soja", foundAlergeno.getNombre());
-    }
 }

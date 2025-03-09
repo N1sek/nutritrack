@@ -23,8 +23,15 @@ public class Alergeno {
     private String nombre;
 
     @ManyToMany(mappedBy = "alergenos")
-    @JsonIgnore
+    @JsonIgnore // Evita que se devuelva la lista de recetas en JSON
     @ToString.Exclude
     private List<Alimento> alimentos;
 
+    @ManyToMany(mappedBy = "alergenos")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Receta> recetas;
+
 }
+
+
