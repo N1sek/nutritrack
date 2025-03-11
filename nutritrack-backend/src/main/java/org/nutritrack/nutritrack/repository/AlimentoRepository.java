@@ -12,9 +12,9 @@ import java.util.Optional;
 
 public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
     Optional<Alimento> findByName(String name);
+
     @Query(
             value = "SELECT A FROM Alimento A ", countQuery = "SELECT count(*) FROM Alimento A"
     )
     Page<Alimento> findByNameContainingIgnoreCase(String name, Pageable pageable);
-    List<Alimento> findByCaloriesLessThanEqual(double calorias);
 }

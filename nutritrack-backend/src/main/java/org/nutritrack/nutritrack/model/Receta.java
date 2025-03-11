@@ -8,6 +8,7 @@ import org.nutritrack.nutritrack.enums.TipoComida;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "recetas")
@@ -30,7 +31,7 @@ public class Receta {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_receta_usuario"))
     @JsonIgnore
     @ToString.Exclude
@@ -40,7 +41,7 @@ public class Receta {
     private Set<RecetaAlimento> ingredientes = new HashSet<>();
 
     @Column
-    private String imageUrl; // Imagen de la receta opcional
+    private String imageUrl;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -50,13 +51,12 @@ public class Receta {
     private Double caloriasTotales;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "recetas_alergenos",
-            joinColumns = @JoinColumn(name = "receta_id"),
-            inverseJoinColumns = @JoinColumn(name = "alergeno_id")
-    )
-    private List<Alergeno> alergenos;
+    @Transient
+    public Set<Alergeno> getAlergenos() {
+        return ingredientes.stream()
+                .flatMap(ingrediente -> ingrediente.getAlimento().getAlergenos().stream())
+                .collect(Collectors.toSet());
+    }
 
 }
 

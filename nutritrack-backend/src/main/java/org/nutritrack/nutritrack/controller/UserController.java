@@ -2,6 +2,7 @@ package org.nutritrack.nutritrack.controller;
 
 import org.nutritrack.nutritrack.dto.UserDTO;
 import org.nutritrack.nutritrack.model.User;
+import org.nutritrack.nutritrack.repository.UserRepository;
 import org.nutritrack.nutritrack.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,11 @@ import java.util.regex.Pattern;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService, UserRepository userRepository){
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/register")
@@ -64,4 +67,6 @@ public class UserController {
             return ResponseEntity.status(401).body("Credenciales invalidas");
         }
     }
+
+
 }

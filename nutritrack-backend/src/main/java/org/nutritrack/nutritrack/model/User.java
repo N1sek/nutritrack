@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
+import org.hibernate.annotations.processing.Pattern;
 import org.nutritrack.nutritrack.enums.NivelActividad;
 import org.nutritrack.nutritrack.enums.Objetivo;
 import org.nutritrack.nutritrack.enums.Rol;

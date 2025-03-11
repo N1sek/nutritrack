@@ -11,7 +11,4 @@ import java.util.List;
 @Repository
 public interface RecetaAlimentoRepository extends JpaRepository<RecetaAlimento, Long> {
 
-    List<RecetaAlimento> findByReceta(Receta receta);
-
-    List<RecetaAlimento> findByAlimento(Alimento alimento);
 }

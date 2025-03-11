@@ -1,7 +1,6 @@
 -- Borrar datos existentes para evitar duplicados en pruebas
 DELETE FROM usuarios_recetas_favoritas;
 DELETE FROM usuarios_alergenos;
-DELETE FROM recetas_alergenos;
 DELETE FROM recetas_alimentos;
 DELETE FROM recetas;
 DELETE FROM alimentos_alergenos;
@@ -63,12 +62,6 @@ VALUES
     (2, 4, 15.00, 'GRAMOS'),  -- Batido de Proteínas tiene Almendras
     (3, 5, 100.00, 'GRAMOS'); -- Tacos de Camarón tiene Camarón
 
--- Asociar alérgenos con recetas (heredados de los ingredientes)
-INSERT INTO recetas_alergenos (receta_id, alergeno_id)
-VALUES
-    (2, 2), -- Batido de Proteínas tiene Lácteos (por la leche)
-    (2, 3), -- Batido de Proteínas tiene Frutos Secos (por las almendras)
-    (3, 4); -- Tacos de Camarón tiene Mariscos
 
 -- Asociar recetas favoritas a usuarios
 INSERT INTO usuarios_recetas_favoritas (user_id, receta_id)

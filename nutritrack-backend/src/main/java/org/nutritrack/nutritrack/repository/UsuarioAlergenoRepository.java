@@ -11,8 +11,5 @@ import java.util.List;
 @Repository
 public interface UsuarioAlergenoRepository extends JpaRepository<UsuarioAlergeno, Long> {
 
-    List<UsuarioAlergeno> findByUser(User user);
-
-    void deleteByUserAndAlergeno(User user, Alergeno alergeno);
 }
 

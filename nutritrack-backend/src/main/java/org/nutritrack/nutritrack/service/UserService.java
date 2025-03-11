@@ -1,10 +1,12 @@
 package org.nutritrack.nutritrack.service;
 
 import org.nutritrack.nutritrack.model.User;
+import org.nutritrack.nutritrack.repository.RecetaRepository;
 import org.nutritrack.nutritrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,9 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
+    @Autowired
+    RecetaRepository recetaRepository;
 
     public User registerUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
@@ -69,10 +74,6 @@ public class UserService {
         }).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
-    public void deleteUser(Long id) {
-        if (!userRepository.existsById(id)) {
-            throw new RuntimeException("El usuario no existe");
-        }
-        userRepository.deleteById(id);
-    }
+
+
 }

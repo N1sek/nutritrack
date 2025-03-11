@@ -16,7 +16,7 @@ public class AlergenoController {
     @Autowired
     private AlergenoService alergenoService;
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public ResponseEntity<List<Alergeno>> getAllAlergenos() {
         return ResponseEntity.ok(alergenoService.getAllAlergenos());
     }
