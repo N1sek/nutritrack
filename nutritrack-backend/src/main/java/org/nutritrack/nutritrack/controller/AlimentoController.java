@@ -3,6 +3,8 @@ package org.nutritrack.nutritrack.controller;
 import org.nutritrack.nutritrack.model.Alimento;
 import org.nutritrack.nutritrack.service.AlimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +18,8 @@ public class AlimentoController {
     private AlimentoService alimentoService;
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<Alimento>> buscarAlimentos(@RequestParam String nombre) {
-        List<Alimento> alimentos = alimentoService.buscarAlimentosPorNombre(nombre);
+    public ResponseEntity<Page<Alimento>> buscarAlimentos(@RequestParam String nombre, Pageable pageable) {
+        Page<Alimento> alimentos = alimentoService.buscarAlimentosPorNombre(nombre, pageable);
         return ResponseEntity.ok(alimentos);
     }
 

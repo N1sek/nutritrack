@@ -3,6 +3,7 @@ package org.nutritrack.nutritrack.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.nutritrack.nutritrack.enums.UnidadMedida;
 
 import java.math.BigDecimal;
 
@@ -32,6 +33,6 @@ public class RecetaAlimento {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal cantidad;
 
-    @Column(nullable = false)
-    private String unidadMedida; // Ejemplo: gramos, ml, unidades
+    @Enumerated(EnumType.STRING)
+    private UnidadMedida unidadMedida;
 }

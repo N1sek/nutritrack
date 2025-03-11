@@ -43,5 +43,4 @@ public interface RecetaRepository extends JpaRepository<Receta, Long> {
     );
 
 
-
 }

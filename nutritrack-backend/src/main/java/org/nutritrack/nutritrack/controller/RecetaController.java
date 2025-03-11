@@ -54,7 +54,6 @@ public class RecetaController {
     }
 
 
-
     @PostMapping
     public ResponseEntity<Receta> saveReceta(@RequestBody Receta receta, @RequestParam Long userId) {
         return ResponseEntity.ok(recetaService.saveReceta(receta, userId));

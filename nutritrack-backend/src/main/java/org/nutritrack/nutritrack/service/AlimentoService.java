@@ -8,15 +8,19 @@ import org.nutritrack.nutritrack.model.User;
 import org.nutritrack.nutritrack.repository.AlimentoRepository;
 import org.nutritrack.nutritrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+import org.springframework.data.domain.PageImpl;
 @Service
 public class AlimentoService {
 
@@ -27,18 +31,22 @@ public class AlimentoService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Alimento> buscarAlimentosPorNombre(String nombre) {
-        List<Alimento> alimentosLocales = alimentoRepository.findByNameContainingIgnoreCase(nombre);
+
+
+    public Page<Alimento> buscarAlimentosPorNombre(String nombre, Pageable pageable) {
+        Page<Alimento> alimentosLocales = alimentoRepository.findByNameContainingIgnoreCase(nombre, pageable);
 
         // Si hay alimentos en local, devolverlos primero
         if (!alimentosLocales.isEmpty()) {
             List<Alimento> alimentosAPI = obtenerAlimentosDesdeAPI(nombre);
-            alimentosLocales.addAll(alimentosAPI); // Añadir los de la API al final
-            return alimentosLocales;
+            List<Alimento> combinedList = new ArrayList<>(alimentosLocales.getContent());
+            combinedList.addAll(alimentosAPI);
+            return new PageImpl<>(combinedList, pageable, combinedList.size());
         }
 
         // Si no hay en local, devolver solo los de la API
-        return obtenerAlimentosDesdeAPI(nombre);
+        List<Alimento> alimentosAPI = obtenerAlimentosDesdeAPI(nombre);
+        return new PageImpl<>(alimentosAPI, pageable, alimentosAPI.size());
     }
 
     private List<Alimento> obtenerAlimentosDesdeAPI(String nombre) {
