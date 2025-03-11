@@ -7,6 +7,7 @@ import org.nutritrack.nutritrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
@@ -27,14 +28,12 @@ public class RecetaService {
     }
 
     public List<Receta> getRecetasByUser(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        if (user.isEmpty()) {
-            throw new RuntimeException("Usuario no encontrado");
-        }
-
-        return recetaRepository.findByUser(user.get());
+        return recetaRepository.findByUser(user);
     }
+
 
 
     public Optional<Receta> getRecetaById(Long id) {
@@ -51,7 +50,7 @@ public class RecetaService {
         return recetaRepository.findRecetasFiltradas(nombre, minCalorias, maxCalorias, tipoComida, favoritos, userId, alergenoIds);
     }
 
-
+    @Transactional
     public Receta saveReceta(Receta receta, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -78,7 +77,7 @@ public class RecetaService {
     }
 
 
-
+    @Transactional
     public void deleteReceta(Long id, Long userId) {
         Receta receta = recetaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Receta no encontrada"));

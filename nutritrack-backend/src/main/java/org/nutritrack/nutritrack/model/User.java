@@ -1,6 +1,7 @@
 package org.nutritrack.nutritrack.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,8 @@ import org.nutritrack.nutritrack.enums.Rol;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -19,9 +21,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(nullable = false)
@@ -61,17 +65,17 @@ public class User {
     private Objetivo objetivo;
 
     @Column(nullable = false)
-    private LocalDateTime createdOn;
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<Alimento> alimentos;
+    private Set<Alimento> alimentos = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<UsuarioAlergeno> usuarioAlergenos;
+    private Set<UsuarioAlergeno> usuarioAlergenos = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -79,16 +83,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "alergeno_id")
     )
-    private List<Alergeno> alergenos;
+    private Set<Alergeno> alergenos = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<UsuarioRecetaFavorita> recetasFavoritas;
-
-
-    @PrePersist
-    public void prePersist() {
-        this.createdOn = LocalDateTime.now();
-    }
+    private Set<UsuarioRecetaFavorita> recetasFavoritas = new HashSet<>();
 }

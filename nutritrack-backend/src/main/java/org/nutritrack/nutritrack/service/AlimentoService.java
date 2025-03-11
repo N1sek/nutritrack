@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
@@ -34,20 +35,32 @@ public class AlimentoService {
 
 
     public Page<Alimento> buscarAlimentosPorNombre(String nombre, Pageable pageable) {
+        // Obtener alimentos de la base de datos local
         Page<Alimento> alimentosLocales = alimentoRepository.findByNameContainingIgnoreCase(nombre, pageable);
 
-        // Si hay alimentos en local, devolverlos primero
-        if (!alimentosLocales.isEmpty()) {
-            List<Alimento> alimentosAPI = obtenerAlimentosDesdeAPI(nombre);
-            List<Alimento> combinedList = new ArrayList<>(alimentosLocales.getContent());
-            combinedList.addAll(alimentosAPI);
-            return new PageImpl<>(combinedList, pageable, combinedList.size());
-        }
-
-        // Si no hay en local, devolver solo los de la API
+        // Obtener alimentos desde la API
         List<Alimento> alimentosAPI = obtenerAlimentosDesdeAPI(nombre);
-        return new PageImpl<>(alimentosAPI, pageable, alimentosAPI.size());
+
+        // Combinar las listas y filtrar aquellos que contienen la palabra clave
+        List<Alimento> todosLosAlimentos = new ArrayList<>();
+        todosLosAlimentos.addAll(alimentosLocales.getContent());
+        todosLosAlimentos.addAll(alimentosAPI);
+
+        List<Alimento> alimentosFiltrados = todosLosAlimentos.stream()
+                .filter(alimento -> alimento.getName().toLowerCase().contains(nombre.toLowerCase())) // Solo coincidencias exactas
+                .sorted(Comparator.comparingInt(a -> a.getName().toLowerCase().indexOf(nombre.toLowerCase()))) // Priorizar las coincidencias al inicio del nombre
+                .collect(Collectors.toList());
+
+        // Aplicar paginación después de filtrar
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), alimentosFiltrados.size());
+        List<Alimento> pagedList = alimentosFiltrados.subList(start, end);
+
+        return new PageImpl<>(pagedList, pageable, alimentosFiltrados.size());
     }
+
+
+
 
     private List<Alimento> obtenerAlimentosDesdeAPI(String nombre) {
         RestTemplate restTemplate = new RestTemplate();
@@ -59,12 +72,7 @@ public class AlimentoService {
             if (response != null && response.getProducts() != null) {
                 return response.getProducts().stream()
                         .map(this::convertirProductoAAlimento)
-                        .filter(Objects::nonNull)
-                        .sorted(Comparator
-                                .comparing((Alimento a) -> !a.getName().toLowerCase().contains(nombre.toLowerCase()))
-                                .thenComparingInt(a -> calcularSimilitud(nombre, a.getName()))
-                                .thenComparingInt(a -> -a.getName().length())
-                        )
+                        .filter(Objects::nonNull) // Solo elimina nulos, pero no filtra por nombre
                         .collect(Collectors.toList());
             }
         } catch (Exception e) {
@@ -75,6 +83,7 @@ public class AlimentoService {
     }
 
 
+    @Transactional
     public Alimento guardarAlimentoSeleccionado(Alimento alimento) {
         if (alimentoRepository.findByName(alimento.getName()).isEmpty()) {
             // Buscar usuario de OpenFoodDatabase
@@ -90,6 +99,7 @@ public class AlimentoService {
         return alimento; // Si ya existe, no lo guarda de nuevo
     }
 
+    @Transactional
     public Alimento crearAlimento(Alimento alimento, Long userId) {
         if (alimento.getName() == null || alimento.getName().isBlank()) {
             throw new IllegalArgumentException("El nombre del alimento no puede estar vacío.");
@@ -120,28 +130,5 @@ public class AlimentoService {
                 .unidadMedida(UnidadMedida.GRAMOS)
                 .createdBy("OpenFoodDatabase")
                 .build();
-    }
-
-    private int calcularSimilitud(String input, String target) {
-        input = input.toLowerCase().replace(" ", "");
-        target = target.toLowerCase().replace(" ", "");
-
-        int[][] dp = new int[input.length() + 1][target.length() + 1];
-
-        for (int i = 0; i <= input.length(); i++) {
-            for (int j = 0; j <= target.length(); j++) {
-                if (i == 0) {
-                    dp[i][j] = j;
-                } else if (j == 0) {
-                    dp[i][j] = i;
-                } else {
-                    dp[i][j] = Math.min(
-                            Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1),
-                            dp[i - 1][j - 1] + (input.charAt(i - 1) == target.charAt(j - 1) ? 0 : 1)
-                    );
-                }
-            }
-        }
-        return dp[input.length()][target.length()];
     }
 }

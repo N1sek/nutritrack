@@ -8,6 +8,7 @@ import org.nutritrack.nutritrack.repository.UserRepository;
 import org.nutritrack.nutritrack.repository.RecetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,8 @@ public class UsuarioRecetaFavoritaService {
     @Autowired
     private RecetaRepository recetaRepository;
 
+
+    @Transactional
     public boolean toggleFavorito(Long userId, Long recetaId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));

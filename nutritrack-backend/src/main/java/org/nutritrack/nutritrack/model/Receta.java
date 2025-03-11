@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.nutritrack.nutritrack.enums.TipoComida;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "recetas")
@@ -14,10 +16,12 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Receta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(nullable = false)
@@ -33,7 +37,7 @@ public class Receta {
     private User user;
 
     @OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RecetaAlimento> ingredientes;
+    private Set<RecetaAlimento> ingredientes = new HashSet<>();
 
     @Column
     private String imageUrl; // Imagen de la receta opcional
