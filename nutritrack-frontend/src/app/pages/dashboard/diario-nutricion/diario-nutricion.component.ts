@@ -44,7 +44,7 @@ export class DiarioNutricionComponent {
       sugerencias.push({
         id: 1,
         nombre: 'Omelette de claras',
-        imagen: 'https://acortar.link/oGwpgd',
+        imagen: 'https://placehold.co/400x400',
         calorias: 150,
         proteinas: 20,
         carbohidratos: 2,
@@ -57,7 +57,7 @@ export class DiarioNutricionComponent {
       sugerencias.push({
         id: 2,
         nombre: 'Avena con frutos secos',
-        imagen: 'https://acortar.link/y5APZc',
+        imagen: 'https://placehold.co/400x400',
         calorias: 250,
         proteinas: 8,
         carbohidratos: 45,
@@ -70,7 +70,7 @@ export class DiarioNutricionComponent {
       sugerencias.push({
         id: 3,
         nombre: 'Ensalada de aguacate y nueces',
-        imagen: 'https://acortar.link/7wbn87',
+        imagen: 'https://placehold.co/400x400',
         calorias: 200,
         proteinas: 5,
         carbohidratos: 10,
